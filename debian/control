@@ -20,7 +20,7 @@ Package: ruby-kitchen-vagrant
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
 Depends: ruby | ruby-interpreter,
-         test-kitchen (>= 1.4),
+         test-kitchen (>= 1.4), vagrant
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Kitchen::Driver::Vagrant - A Vagrant Driver for Test Kitchen.
