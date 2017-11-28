@@ -1,0 +1,1 @@
+templates/Vagrantfile.erb /usr/share/test-kitchen/templates
