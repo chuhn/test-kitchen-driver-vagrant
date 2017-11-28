@@ -1,13 +1,14 @@
 From: Christopher Huhn <C.Huhn@gsi.de>
 Date: Tue, 28 Nov 2017 13:13:51 +0100
-Subject: Specify correct path to the Vagrantfile.erb template
+Subject: Specify correct path to the Vagrantfile.erb template and tweak tests
 
 ---
- lib/kitchen/driver/vagrant.rb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ lib/kitchen/driver/vagrant.rb       | 2 +-
+ spec/kitchen/driver/vagrant_spec.rb | 5 +++--
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/lib/kitchen/driver/vagrant.rb b/lib/kitchen/driver/vagrant.rb
-index 4dab438..f4874ad 100644
+index 4dab438..f2cd4e8 100644
 --- a/lib/kitchen/driver/vagrant.rb
 +++ b/lib/kitchen/driver/vagrant.rb
 @@ -76,7 +76,7 @@ module Kitchen
@@ -15,7 +16,30 @@ index 4dab438..f4874ad 100644
  
        default_config :vagrantfile_erb,
 -        File.join(File.dirname(__FILE__), "../../../templates/Vagrantfile.erb")
-+        File.join('/usr/share/test-kitchen/templates/Vagrantfile.erb')
++        File.join("/usr/share/test-kitchen/templates/Vagrantfile.erb")
        expand_path_for :vagrantfile_erb
  
        default_config :vagrantfiles, []
+diff --git a/spec/kitchen/driver/vagrant_spec.rb b/spec/kitchen/driver/vagrant_spec.rb
+index a5214eb..7c3f5a7 100644
+--- a/spec/kitchen/driver/vagrant_spec.rb
++++ b/spec/kitchen/driver/vagrant_spec.rb
+@@ -30,7 +30,8 @@ describe Kitchen::Driver::Vagrant do
+ 
+   let(:logged_output) { StringIO.new }
+   let(:logger)        { Logger.new(logged_output) }
+-  let(:config)        { { :kitchen_root => "/kroot" } }
++  let(:config)        { { :kitchen_root => "/kroot", 
++                          :vagrantfile_erb => File.join(File.dirname(__FILE__),'../../../templates/Vagrantfile.erb') } }
+   let(:platform)      { Kitchen::Platform.new(:name => "fooos-99") }
+   let(:suite)         { Kitchen::Suite.new(:name => "suitey") }
+   let(:verifier)      { Kitchen::Verifier::Dummy.new }
+@@ -410,7 +411,7 @@ describe Kitchen::Driver::Vagrant do
+ 
+     it "sets :vagrantfile_erb to a default" do
+       expect(driver[:vagrantfile_erb]).to match(
+-        %r{/kitchen-vagrant/templates/Vagrantfile\.erb$}
++        %r{/templates/Vagrantfile\.erb$}
+       )
+     end
+ 
