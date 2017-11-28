@@ -1,0 +1,5 @@
+ruby-kitchen-vagrant (1.2.1-1) UNRELEASED; urgency=medium
+
+  * Initial release (Closes: #nnnn)
+
+ -- Christopher Huhn, GSI <C.Huhn@gsi.de>  Tue, 28 Nov 2017 12:45:05 +0100

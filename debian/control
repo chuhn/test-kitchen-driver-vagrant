@@ -1,0 +1,27 @@
+Source: ruby-kitchen-vagrant
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Christopher Huhn,
+           GSI <C.Huhn@gsi.de>
+Build-Depends: debhelper (>= 9~),
+               gem2deb,
+               rake,
+               ruby-rspec,
+               test-kitchen (>= 1.4)
+Standards-Version: 3.9.8
+Vcs-Git: https://anonscm.debian.org/git/pkg-ruby-extras/ruby-kitchen-vagrant.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-ruby-extras/ruby-kitchen-vagrant.git
+Homepage: https://github.com/test-kitchen/kitchen-vagrant/
+Testsuite: autopkgtest-pkg-ruby
+XS-Ruby-Versions: all
+
+Package: ruby-kitchen-vagrant
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ruby | ruby-interpreter,
+         test-kitchen (>= 1.4),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Kitchen::Driver::Vagrant - A Vagrant Driver for Test Kitchen.
+ Kitchen::Driver::Vagrant - A Vagrant Driver for Test Kitchen.
