@@ -1,0 +1,21 @@
+From: Christopher Huhn <C.Huhn@gsi.de>
+Date: Tue, 28 Nov 2017 13:13:51 +0100
+Subject: Specify correct path to the Vagrantfile.erb template
+
+---
+ lib/kitchen/driver/vagrant.rb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/kitchen/driver/vagrant.rb b/lib/kitchen/driver/vagrant.rb
+index 4dab438..f4874ad 100644
+--- a/lib/kitchen/driver/vagrant.rb
++++ b/lib/kitchen/driver/vagrant.rb
+@@ -76,7 +76,7 @@ module Kitchen
+       default_config :vagrant_binary, "vagrant"
+ 
+       default_config :vagrantfile_erb,
+-        File.join(File.dirname(__FILE__), "../../../templates/Vagrantfile.erb")
++        File.join('/usr/share/test-kitchen/templates/Vagrantfile.erb')
+       expand_path_for :vagrantfile_erb
+ 
+       default_config :vagrantfiles, []
