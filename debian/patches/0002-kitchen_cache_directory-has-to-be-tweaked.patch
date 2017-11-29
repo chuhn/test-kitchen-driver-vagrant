@@ -1,0 +1,47 @@
+From: Christopher Huhn <C.Huhn@gsi.de>
+Date: Wed, 29 Nov 2017 11:24:59 +0100
+Subject: kitchen_cache_directory has to be tweaked
+
+Tests will fail if run as nobody (git-pbuilder): home directory is /nonexistent
+---
+ spec/kitchen/driver/vagrant_spec.rb | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/spec/kitchen/driver/vagrant_spec.rb b/spec/kitchen/driver/vagrant_spec.rb
+index 7c3f5a7..89bb6c2 100644
+--- a/spec/kitchen/driver/vagrant_spec.rb
++++ b/spec/kitchen/driver/vagrant_spec.rb
+@@ -30,8 +30,13 @@ describe Kitchen::Driver::Vagrant do
+ 
+   let(:logged_output) { StringIO.new }
+   let(:logger)        { Logger.new(logged_output) }
+-  let(:config)        { { :kitchen_root => "/kroot", 
+-                          :vagrantfile_erb => File.join(File.dirname(__FILE__),'../../../templates/Vagrantfile.erb') } }
++  let(:kitchen_cache_directory) { '/tmp/kitchen_cache' }
++  let(:config) do
++    { :kitchen_root => "/kroot",
++      :vagrantfile_erb => File.join(File.dirname(__FILE__),'../../../templates/Vagrantfile.erb'),
++      :kitchen_cache_directory => kitchen_cache_directory
++    }
++  end
+   let(:platform)      { Kitchen::Platform.new(:name => "fooos-99") }
+   let(:suite)         { Kitchen::Suite.new(:name => "suitey") }
+   let(:verifier)      { Kitchen::Verifier::Dummy.new }
+@@ -156,7 +161,7 @@ describe Kitchen::Driver::Vagrant do
+ 
+     let(:cache_directory_array) do
+       [
+-        File.expand_path("~/.kitchen/cache"),
++        kitchen_cache_directory,
+         "/tmp/omnibus/cache",
+         "create: true",
+       ]
+@@ -485,7 +490,7 @@ describe Kitchen::Driver::Vagrant do
+ 
+       let(:custom_cache_directory_array) do
+         [
+-          File.expand_path("~/.kitchen/cache"),
++          kitchen_cache_directory,
+           "Z:\\awesome\\cache",
+           "create: true",
+         ]

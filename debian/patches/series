@@ -1,1 +1,2 @@
 0001-Specify-correct-path-to-the-Vagrantfile.erb-template.patch
+0002-kitchen_cache_directory-has-to-be-tweaked.patch
