@@ -23,5 +23,9 @@ Depends: ruby | ruby-interpreter,
          test-kitchen (>= 1.4), vagrant
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Kitchen::Driver::Vagrant - A Vagrant Driver for Test Kitchen.
- Kitchen::Driver::Vagrant - A Vagrant Driver for Test Kitchen.
+Description: Vagrant driver for Test Kitchen
+ This package enables Test Kitchen to run test suites on Vagrant boxes.
+ .
+ The driver generates a single Vagrantfile for each instance of Kitchen
+ in a sandboxed directory.
+ The kitchen-vagrant driver is the default driver for Test Kitchen.
