@@ -1,4 +1,4 @@
-Source: ruby-kitchen-vagrant
+Source: test-kitchen-driver-vagrant
 Section: ruby
 Priority: optional
 Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
@@ -16,7 +16,7 @@ Homepage: https://github.com/test-kitchen/kitchen-vagrant/
 Testsuite: autopkgtest-pkg-ruby
 XS-Ruby-Versions: all
 
-Package: ruby-kitchen-vagrant
+Package: test-kitchen-driver-vagrant
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
 Depends: ruby | ruby-interpreter,
